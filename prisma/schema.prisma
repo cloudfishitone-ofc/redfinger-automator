@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Redeem {
+  id              String   @id @default(cuid())
+  email           String
+  password        String
+  redeemCode      String
+  server          String
+  systemVersion   String
+  cloudType       String
+  duration        String
+  status          String   @default("pending")
+  createdAt       DateTime @default(now())
+  
+  @@index([createdAt])
+}
